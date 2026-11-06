@@ -37,16 +37,16 @@ function ResetPasswordPage() {
     return () => data.subscription.unsubscribe();
   }, []);
 
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
+  async function submit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const password = String(fd.get("password"));
-    if (password.length < 8) return toast.error("Password must be at least 8 characters");
-    if (password !== String(fd.get("confirm"))) return toast.error("Passwords do not match");
+    if (password.length < 8) return void toast.error("Password must be at least 8 characters");
+    if (password !== String(fd.get("confirm"))) return void toast.error("Passwords do not match");
     setBusy(true);
     const { error } = await supabase.auth.updateUser({ password });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) return void toast.error(error.message);
     toast.success("Password updated");
     navigate({ to: "/dashboard" });
   }

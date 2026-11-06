@@ -68,7 +68,7 @@ function FacilityPage() {
       !!(await supabase.from("saved_facilities").select("facility_id").eq("user_id", user!.id).eq("facility_id", f.id).maybeSingle()).data,
   });
 
-  async function toggleSave() {
+  async function toggleSave(): Promise<void> {
     if (!user) {
       toast("Sign in to save facilities");
       return;
@@ -76,7 +76,7 @@ function FacilityPage() {
     const { error } = saved
       ? await supabase.from("saved_facilities").delete().eq("user_id", user.id).eq("facility_id", f.id)
       : await supabase.from("saved_facilities").insert({ user_id: user.id, facility_id: f.id });
-    if (error) return toast.error(error.message);
+    if (error) return void toast.error(error.message);
     queryClient.invalidateQueries({ queryKey: ["saved"] });
     toast.success(saved ? "Removed from saved" : "Saved to your dashboard");
   }

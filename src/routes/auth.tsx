@@ -66,16 +66,16 @@ function AuthPage() {
     if (error) toast.error(error.message);
   }
 
-  async function signUp(e: React.FormEvent<HTMLFormElement>) {
+  async function signUp(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const full_name = String(fd.get("full_name")).trim();
     const phone = String(fd.get("phone")).trim();
     const email = String(fd.get("email")).trim();
     const password = String(fd.get("password"));
-    if (full_name.length < 2) return toast.error("Enter your full name");
-    if (phone && !INDIAN_MOBILE.test(phone)) return toast.error("Enter a valid 10-digit mobile number");
-    if (password.length < 8) return toast.error("Password must be at least 8 characters");
+    if (full_name.length < 2) return void toast.error("Enter your full name");
+    if (phone && !INDIAN_MOBILE.test(phone)) return void toast.error("Enter a valid 10-digit mobile number");
+    if (password.length < 8) return void toast.error("Password must be at least 8 characters");
     setBusy(true);
     sessionStorage.setItem(REDIRECT_KEY, target);
     const { data, error } = await supabase.auth.signUp({
@@ -84,17 +84,17 @@ function AuthPage() {
       options: { emailRedirectTo: `${window.location.origin}/auth`, data: { full_name, phone } },
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) return void toast.error(error.message);
     if (!data.session) setSentTo(email);
   }
 
-  async function sendReset(e: React.FormEvent<HTMLFormElement>) {
+  async function sendReset(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     const email = String(new FormData(e.currentTarget).get("email")).trim();
     setBusy(true);
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) return void toast.error(error.message);
     toast.success("Check your email for a reset link");
     setForgot(false);
   }
