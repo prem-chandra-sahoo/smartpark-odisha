@@ -10,7 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as FindParkingRouteImport } from './routes/find-parking'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as ListYourParkingRouteImport } from './routes/list-your-parking'
+import { Route as PoliciesRouteImport } from './routes/policies'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ParkingFacilityIdRouteImport } from './routes/parking.$facilityId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +24,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FindParkingRoute = FindParkingRouteImport.update({
   id: '/find-parking',
   path: '/find-parking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListYourParkingRoute = ListYourParkingRouteImport.update({
+  id: '/list-your-parking',
+  path: '/list-your-parking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliciesRoute = PoliciesRouteImport.update({
+  id: '/policies',
+  path: '/policies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParkingFacilityIdRoute = ParkingFacilityIdRouteImport.update({
@@ -31,31 +67,83 @@ const ParkingFacilityIdRoute = ParkingFacilityIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/find-parking': typeof FindParkingRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-parking': typeof ListYourParkingRoute
+  '/policies': typeof PoliciesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/parking/$facilityId': typeof ParkingFacilityIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/find-parking': typeof FindParkingRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-parking': typeof ListYourParkingRoute
+  '/policies': typeof PoliciesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/parking/$facilityId': typeof ParkingFacilityIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/find-parking': typeof FindParkingRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-parking': typeof ListYourParkingRoute
+  '/policies': typeof PoliciesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/parking/$facilityId': typeof ParkingFacilityIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/find-parking' | '/parking/$facilityId'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/find-parking'
+    | '/how-it-works'
+    | '/list-your-parking'
+    | '/policies'
+    | '/reset-password'
+    | '/parking/$facilityId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/find-parking' | '/parking/$facilityId'
-  id: '__root__' | '/' | '/find-parking' | '/parking/$facilityId'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/find-parking'
+    | '/how-it-works'
+    | '/list-your-parking'
+    | '/policies'
+    | '/reset-password'
+    | '/parking/$facilityId'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/find-parking'
+    | '/how-it-works'
+    | '/list-your-parking'
+    | '/policies'
+    | '/reset-password'
+    | '/parking/$facilityId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
   FindParkingRoute: typeof FindParkingRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  ListYourParkingRoute: typeof ListYourParkingRoute
+  PoliciesRoute: typeof PoliciesRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   ParkingFacilityIdRoute: typeof ParkingFacilityIdRoute
 }
 
@@ -68,11 +156,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/find-parking': {
       id: '/find-parking'
       path: '/find-parking'
       fullPath: '/find-parking'
       preLoaderRoute: typeof FindParkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/list-your-parking': {
+      id: '/list-your-parking'
+      path: '/list-your-parking'
+      fullPath: '/list-your-parking'
+      preLoaderRoute: typeof ListYourParkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/policies': {
+      id: '/policies'
+      path: '/policies'
+      fullPath: '/policies'
+      preLoaderRoute: typeof PoliciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parking/$facilityId': {
@@ -87,7 +217,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
   FindParkingRoute: FindParkingRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  ListYourParkingRoute: ListYourParkingRoute,
+  PoliciesRoute: PoliciesRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   ParkingFacilityIdRoute: ParkingFacilityIdRoute,
 }
 export const routeTree = rootRouteImport
