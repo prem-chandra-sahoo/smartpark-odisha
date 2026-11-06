@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FindParkingRouteImport } from './routes/find-parking'
+import { Route as ParkingFacilityIdRouteImport } from './routes/parking.$facilityId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FindParkingRoute = FindParkingRouteImport.update({
+  id: '/find-parking',
+  path: '/find-parking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParkingFacilityIdRoute = ParkingFacilityIdRouteImport.update({
+  id: '/parking/$facilityId',
+  path: '/parking/$facilityId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/find-parking': typeof FindParkingRoute
+  '/parking/$facilityId': typeof ParkingFacilityIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/find-parking': typeof FindParkingRoute
+  '/parking/$facilityId': typeof ParkingFacilityIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/find-parking': typeof FindParkingRoute
+  '/parking/$facilityId': typeof ParkingFacilityIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/find-parking' | '/parking/$facilityId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/find-parking' | '/parking/$facilityId'
+  id: '__root__' | '/' | '/find-parking' | '/parking/$facilityId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FindParkingRoute: typeof FindParkingRoute
+  ParkingFacilityIdRoute: typeof ParkingFacilityIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/find-parking': {
+      id: '/find-parking'
+      path: '/find-parking'
+      fullPath: '/find-parking'
+      preLoaderRoute: typeof FindParkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parking/$facilityId': {
+      id: '/parking/$facilityId'
+      path: '/parking/$facilityId'
+      fullPath: '/parking/$facilityId'
+      preLoaderRoute: typeof ParkingFacilityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FindParkingRoute: FindParkingRoute,
+  ParkingFacilityIdRoute: ParkingFacilityIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
