@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1793994293556,
+      "tag": "0000_smartpark_core_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793994356955,
+      "tag": "0001_smartpark_demo_seed_and_hours_fix",
+      "breakpoints": true
+    }
+  ]
+}

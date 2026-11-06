@@ -10,33 +10,210 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as FindParkingRouteImport } from './routes/find-parking'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as ListYourParkingRouteImport } from './routes/list-your-parking'
+import { Route as PoliciesRouteImport } from './routes/policies'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as ParkingFacilityIdRouteImport } from './routes/parking.$facilityId'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedBookingsBookingIdRouteImport } from './routes/_authenticated/bookings.$bookingId'
+import { Route as AuthenticatedOwnerIndexRouteImport } from './routes/_authenticated/owner.index'
+import { Route as AuthenticatedOwnerNewRouteImport } from './routes/_authenticated/owner.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FindParkingRoute = FindParkingRouteImport.update({
+  id: '/find-parking',
+  path: '/find-parking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListYourParkingRoute = ListYourParkingRouteImport.update({
+  id: '/list-your-parking',
+  path: '/list-your-parking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliciesRoute = PoliciesRouteImport.update({
+  id: '/policies',
+  path: '/policies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ParkingFacilityIdRoute = ParkingFacilityIdRouteImport.update({
+  id: '/parking/$facilityId',
+  path: '/parking/$facilityId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedBookingsBookingIdRoute =
+  AuthenticatedBookingsBookingIdRouteImport.update({
+    id: '/bookings/$bookingId',
+    path: '/bookings/$bookingId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOwnerIndexRoute = AuthenticatedOwnerIndexRouteImport.update({
+  id: '/owner/',
+  path: '/owner/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedOwnerNewRoute = AuthenticatedOwnerNewRouteImport.update({
+  id: '/owner/new',
+  path: '/owner/new',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/find-parking': typeof FindParkingRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-parking': typeof ListYourParkingRoute
+  '/policies': typeof PoliciesRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/parking/$facilityId': typeof ParkingFacilityIdRoute
+  '/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
+  '/owner/new': typeof AuthenticatedOwnerNewRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/owner/': typeof AuthenticatedOwnerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/find-parking': typeof FindParkingRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-parking': typeof ListYourParkingRoute
+  '/policies': typeof PoliciesRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/parking/$facilityId': typeof ParkingFacilityIdRoute
+  '/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
+  '/owner/new': typeof AuthenticatedOwnerNewRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/owner': typeof AuthenticatedOwnerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/find-parking': typeof FindParkingRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-parking': typeof ListYourParkingRoute
+  '/policies': typeof PoliciesRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/parking/$facilityId': typeof ParkingFacilityIdRoute
+  '/_authenticated/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
+  '/_authenticated/owner/new': typeof AuthenticatedOwnerNewRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/owner/': typeof AuthenticatedOwnerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/find-parking'
+    | '/how-it-works'
+    | '/list-your-parking'
+    | '/policies'
+    | '/reset-password'
+    | '/dashboard'
+    | '/parking/$facilityId'
+    | '/bookings/$bookingId'
+    | '/owner/new'
+    | '/admin/'
+    | '/owner/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/find-parking'
+    | '/how-it-works'
+    | '/list-your-parking'
+    | '/policies'
+    | '/reset-password'
+    | '/dashboard'
+    | '/parking/$facilityId'
+    | '/bookings/$bookingId'
+    | '/owner/new'
+    | '/admin'
+    | '/owner'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/about'
+    | '/auth'
+    | '/find-parking'
+    | '/how-it-works'
+    | '/list-your-parking'
+    | '/policies'
+    | '/reset-password'
+    | '/_authenticated/dashboard'
+    | '/parking/$facilityId'
+    | '/_authenticated/bookings/$bookingId'
+    | '/_authenticated/owner/new'
+    | '/_authenticated/admin/'
+    | '/_authenticated/owner/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  FindParkingRoute: typeof FindParkingRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  ListYourParkingRoute: typeof ListYourParkingRoute
+  PoliciesRoute: typeof PoliciesRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  ParkingFacilityIdRoute: typeof ParkingFacilityIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +225,137 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/find-parking': {
+      id: '/find-parking'
+      path: '/find-parking'
+      fullPath: '/find-parking'
+      preLoaderRoute: typeof FindParkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/list-your-parking': {
+      id: '/list-your-parking'
+      path: '/list-your-parking'
+      fullPath: '/list-your-parking'
+      preLoaderRoute: typeof ListYourParkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/policies': {
+      id: '/policies'
+      path: '/policies'
+      fullPath: '/policies'
+      preLoaderRoute: typeof PoliciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/parking/$facilityId': {
+      id: '/parking/$facilityId'
+      path: '/parking/$facilityId'
+      fullPath: '/parking/$facilityId'
+      preLoaderRoute: typeof ParkingFacilityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/bookings/$bookingId': {
+      id: '/_authenticated/bookings/$bookingId'
+      path: '/bookings/$bookingId'
+      fullPath: '/bookings/$bookingId'
+      preLoaderRoute: typeof AuthenticatedBookingsBookingIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/owner/': {
+      id: '/_authenticated/owner/'
+      path: '/owner'
+      fullPath: '/owner/'
+      preLoaderRoute: typeof AuthenticatedOwnerIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/owner/new': {
+      id: '/_authenticated/owner/new'
+      path: '/owner/new'
+      fullPath: '/owner/new'
+      preLoaderRoute: typeof AuthenticatedOwnerNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedBookingsBookingIdRoute: typeof AuthenticatedBookingsBookingIdRoute
+  AuthenticatedOwnerNewRoute: typeof AuthenticatedOwnerNewRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedOwnerIndexRoute: typeof AuthenticatedOwnerIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedBookingsBookingIdRoute: AuthenticatedBookingsBookingIdRoute,
+  AuthenticatedOwnerNewRoute: AuthenticatedOwnerNewRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedOwnerIndexRoute: AuthenticatedOwnerIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  FindParkingRoute: FindParkingRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  ListYourParkingRoute: ListYourParkingRoute,
+  PoliciesRoute: PoliciesRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  ParkingFacilityIdRoute: ParkingFacilityIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
