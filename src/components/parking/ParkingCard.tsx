@@ -24,7 +24,7 @@ export function ParkingCard({
   compareDisabled,
 }: {
   facility: FacilityWithStats;
-  vehicle?: VehicleKind;
+  vehicle?: VehicleKind | undefined;
   selected?: boolean;
   onSelect?: () => void;
   compared?: boolean;

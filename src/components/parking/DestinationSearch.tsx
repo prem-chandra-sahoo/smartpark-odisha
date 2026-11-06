@@ -19,7 +19,7 @@ export function DestinationSearch({
   initial,
 }: {
   variant?: "hero" | "compact";
-  initial?: { q?: string; city?: string; vehicle?: VehicleKind };
+  initial?: { q?: string | undefined; city?: string | undefined; vehicle?: VehicleKind | undefined };
 }) {
   const navigate = useNavigate();
   const { user } = useAuth();

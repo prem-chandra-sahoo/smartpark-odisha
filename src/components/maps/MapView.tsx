@@ -54,7 +54,7 @@ function pinIcon(google: any, fill: string, text: string, selected: boolean) {
   };
 }
 
-export function MapPlaceholder({ className, reason }: { className?: string; reason?: string }) {
+export function MapPlaceholder({ className, reason }: { className?: string | undefined; reason?: string | undefined }) {
   return (
     <div
       className={cn(

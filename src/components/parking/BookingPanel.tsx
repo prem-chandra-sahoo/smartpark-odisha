@@ -278,7 +278,7 @@ export function BookingPanel({ facility, initialSlots }: { facility: Facility; i
   );
 }
 
-function FieldBox({ id, label, error, children }: { id: string; label: string; error?: string; children: React.ReactNode }) {
+function FieldBox({ id, label, error, children }: { id: string; label: string; error?: string | undefined; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
       <Label htmlFor={id}>{label}</Label>
