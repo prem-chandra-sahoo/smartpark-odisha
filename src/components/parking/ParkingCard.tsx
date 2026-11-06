@@ -133,7 +133,7 @@ export function ParkingCard({
         </Button>
         {onToggleCompare && (
           <label className="ml-auto inline-flex cursor-pointer items-center gap-1.5 text-xs text-muted-foreground">
-            <Checkbox checked={compared} disabled={compareDisabled && !compared} onCheckedChange={onToggleCompare} />
+            <Checkbox checked={!!compared} disabled={!!compareDisabled && !compared} onCheckedChange={onToggleCompare} />
             Compare
           </label>
         )}

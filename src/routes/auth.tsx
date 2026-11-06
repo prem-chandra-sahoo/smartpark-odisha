@@ -13,7 +13,7 @@ import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/hooks/use-auth";
 import { INDIAN_MOBILE } from "@/lib/validation";
 
-type AuthSearch = { redirect?: string; mode?: "signin" | "signup" };
+type AuthSearch = { redirect?: string | undefined; mode?: "signin" | "signup" | undefined };
 
 function safePath(p?: string) {
   return p && p.startsWith("/") && !p.startsWith("//") ? p : "/dashboard";
@@ -21,8 +21,8 @@ function safePath(p?: string) {
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (s: Record<string, unknown>): AuthSearch => ({
-    redirect: typeof s.redirect === "string" ? s.redirect : undefined,
-    mode: s.mode === "signup" ? "signup" : undefined,
+    redirect: typeof s["redirect"] === "string" ? (s["redirect"] as string) : undefined,
+    mode: s["mode"] === "signup" ? "signup" : undefined,
   }),
   head: () => ({
     meta: [

@@ -28,12 +28,12 @@ import {
 } from "@/lib/parking";
 
 type FindSearch = {
-  q?: string;
-  city?: string;
-  vehicle?: VehicleKind;
-  lat?: number;
-  lng?: number;
-  approx?: boolean;
+  q?: string | undefined;
+  city?: string | undefined;
+  vehicle?: VehicleKind | undefined;
+  lat?: number | undefined;
+  lng?: number | undefined;
+  approx?: boolean | undefined;
 };
 
 function num(v: unknown) {
@@ -55,14 +55,17 @@ const searchQuery = (lat: number, lng: number) =>
   });
 
 export const Route = createFileRoute("/find-parking")({
-  validateSearch: (s: Record<string, unknown>): FindSearch => ({
-    q: typeof s.q === "string" ? s.q.slice(0, 120) : undefined,
-    city: typeof s.city === "string" ? s.city.slice(0, 60) : undefined,
-    vehicle: s.vehicle === "two_wheeler" || s.vehicle === "four_wheeler" ? s.vehicle : undefined,
-    lat: num(s.lat),
-    lng: num(s.lng),
-    approx: s.approx === true || s.approx === "true" ? true : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): FindSearch => {
+    const q = s["q"], city = s["city"], vehicle = s["vehicle"], approx = s["approx"];
+    return {
+      q: typeof q === "string" ? q.slice(0, 120) : undefined,
+      city: typeof city === "string" ? city.slice(0, 60) : undefined,
+      vehicle: vehicle === "two_wheeler" || vehicle === "four_wheeler" ? vehicle : undefined,
+      lat: num(s["lat"]),
+      lng: num(s["lng"]),
+      approx: approx === true || approx === "true" ? true : undefined,
+    };
+  },
   loaderDeps: ({ search }) => resolveCenter(search),
   loader: ({ context, deps }) => context.queryClient.ensureQueryData(searchQuery(deps.lat, deps.lng)),
   head: () => ({
